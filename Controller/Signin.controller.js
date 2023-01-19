@@ -2,7 +2,7 @@ require('dotenv').config()
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 const { UserModel } = require('../Models/User.model');
-const loginUser = () => async (req,res) =>{
+const signinUser = () => async (req,res) =>{
     const {email,password } = req.body
     const user = await UserModel.findOne({ email: email })
     if (user) {
@@ -20,5 +20,5 @@ const loginUser = () => async (req,res) =>{
     }
 }
 module.exports = {
-    loginUser
+    signinUser
 }

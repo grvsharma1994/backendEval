@@ -1,7 +1,7 @@
 const { UserModel } = require("../Models/User.model");
 const bcrypt = require('bcrypt');
 const addUser = () => async (req, res) => {
-    const { email, password, name } = req.body;
+    const { email, password} = req.body;
     const user = await UserModel.findOne({ email: email });
     if (user) {
         res.send("User Already Exist")
@@ -14,9 +14,7 @@ const addUser = () => async (req, res) => {
                 const NewUser = new UserModel({
                     email,
                     password: hashPassword,
-                    ip_address: ip,
-                    name
-                });
+                    });
                 await NewUser.save()
                 res.send("New User Added")
             }
