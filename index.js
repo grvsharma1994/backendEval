@@ -1,3 +1,4 @@
+const express = require('express');
 const app = express();
 var cors = require('cors');
 const { connection } = require("./Config/db");
@@ -7,14 +8,14 @@ const { SigninRouter } = require('./Routes/Signin.routes');
 const { SignupRouter } = require('./Routes/Signup.routes');
 const { authentication } = require('./Middleware/Authentication');
 app.use(express.json());
+
 app.use(cors());
 require("dotenv").config();
 app.get('/', (req, res) =>{
     res.send(" Welcome to Homepage")
 })
 app.use("/signup", SignupRouter);
-app.use("/signin", LoginRouter);
-app.use("/dashboard", authentication, DashboardRouter);
+app.use("/signin", SigninRouter);
 app.listen(PORT,async () => {
     try{
         await Connection
